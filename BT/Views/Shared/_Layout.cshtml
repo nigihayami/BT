@@ -13,23 +13,27 @@
     <script src="~/Scripts/metro-ui/jquery.ui.widget.js"></script>
     <script src="~/Scripts/metro-ui/metro.min.js"></script>
 </head>
-<body class="metro">
+<body class="metro bg-dark">
     <div class="grid">
         <nav class="navigation-bar dark fixed-top">
             <nav class="navigation-bar-content container">
-                <a class="element brand" href="@Url.Action("Index","Home")">
+                <a class="element brand fg-orange" href="@Url.Action("Index","Home")">
                     <span class="icon-home"></span>
                 </a>
                 <span class="element-divider"></span>
                 <a class="pull-menu" href="#"></a>
                 <ul class="element-menu">
                     <li>
-                        @Html.ActionLink("Проекты", "Index","Projects")
+                        <a class="fg-orange" href="@Url.Action("Index","Projects")">
+                            <span class="icon-cube"></span>
+                            Проекты
+                        </a>
                     </li>
+                    @RenderSection("UActions",required:false)
                 </ul>
             </nav>
         </nav>
-        <div class="row">
+        <div class="row fixed-bottom">
             <div class="container">
                 @RenderBody()
             </div>
