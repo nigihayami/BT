@@ -21,7 +21,7 @@ namespace BT.Controllers
             var t = baseRep.Tasks.Get(a => a.TProjectsVersions.Id == id).ToList();
             ViewData["StartDay"] = baseRep.ProjectsVersions.GetByID(id).TProjectsVersionsStart;
             if (t.Count == 0)
-            {                
+            {
                 ViewData["EndDay"] = DateTime.Now.AddDays(30.00);
             }
             else
@@ -34,7 +34,7 @@ namespace BT.Controllers
         public ActionResult Create(int id)
         {
             ViewData["id"] = id;
-            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());            
+            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());
             return View();
         }
         [HttpPost]
@@ -49,13 +49,32 @@ namespace BT.Controllers
                 return RedirectToAction("Index", "Tasks", new { id = id });
             }
             ViewData["id"] = id;
-            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());  
+            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());
             return View(tTasks);
         }
         public ActionResult Details(int id)
         {
             var t = baseRep.Tasks.GetByID(id);
             return View(t);
+        }
+        public ActionResult Edit(int id)
+        {
+            var t = baseRep.Tasks.GetByID(id);
+            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());
+            return View(t);
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, TTasks tTasks)
+        {
+            var t = baseRep.Tasks.GetByID(id);
+            t.TTaskDesc = tTasks.TTaskDesc;
+            t.TTaskEnd = tTasks.TTaskEnd;
+            t.TTaskStart = tTasks.TTaskStart;
+            t.TTasksTitle = tTasks.TTasksTitle;
+            t.TTasksTUsersId = t.TTasksTUsersId;
+            baseRep.Tasks.Upd(t);
+            baseRep.Save();
+            return RedirectToAction("Index", "Tasks", new { id = t.TProjectsVersions.Id });
         }
 
         protected override void Dispose(bool disposing)

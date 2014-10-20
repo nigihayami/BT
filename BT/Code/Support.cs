@@ -15,13 +15,15 @@ namespace BT.Code
         }
         public static List<ColumnTimeline> GetColumnTimeline(DateTime start, DateTime end, DateTime from, DateTime to)
         {
-            var list = new List<ColumnTimeline>{};
+            var list = new List<ColumnTimeline> { };
             //Количество дней до даты С
-            list.Add(new ColumnTimeline { color = "white", colspawn = from.Date.Subtract(start).Days });
+            if (from.Date.Subtract(start).Days != 0)
+                list.Add(new ColumnTimeline { color = "white", colspawn = from.Date.Subtract(start).Days });
             //Количество самих дней
-            list.Add(new ColumnTimeline { color = "green", colspawn = to.Date.Subtract(from).Days + 1 , IsTask = true});
+            list.Add(new ColumnTimeline { color = "green", colspawn = to.Date.Subtract(from).Days + 1, IsTask = true });
             //Количество оставшихся дней
-            list.Add(new ColumnTimeline { color = "white", colspawn = end.Date.Subtract(to).Days });
+            if (end.Date.Subtract(to).Days != 0)
+                list.Add(new ColumnTimeline { color = "white", colspawn = end.Date.Subtract(to).Days });
             return list;
         }
     }
