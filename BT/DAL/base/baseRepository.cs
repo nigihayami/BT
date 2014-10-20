@@ -12,6 +12,10 @@ namespace BT.DAL
         private simpleRepository<TProjects> RProjects;
         private simpleRepository<TProjectsVersions> RProjectsVersions;
         private simpleRepository<TStatus> RStatus;
+        private simpleRepository<TTasks> RTasks;
+        private simpleRepository<TProjectsExecutors> RProjectsExecutor;
+
+        private simpleRepository<ApplicationUser> RUser;
 
         public simpleRepository<TProjects> ProjectsRepository
         {
@@ -44,6 +48,39 @@ namespace BT.DAL
                     this.RStatus = new simpleRepository<TStatus>(context);
                 }
                 return RStatus;
+            }
+        }
+        public simpleRepository<TTasks> Tasks
+        {
+            get
+            {
+                if (this.RTasks == null)
+                {
+                    this.RTasks = new simpleRepository<TTasks>(context);
+                }
+                return RTasks;
+            }
+        }
+        public simpleRepository<TProjectsExecutors> ProjectsExecutor
+        {
+            get
+            {
+                if (this.RProjectsExecutor == null)
+                {
+                    this.RProjectsExecutor = new simpleRepository<TProjectsExecutors>(context);
+                }
+                return RProjectsExecutor;
+            }
+        }
+        public simpleRepository<ApplicationUser> Users
+        {
+            get
+            {
+                if (this.RUser == null)
+                {
+                    this.RUser = new simpleRepository<ApplicationUser>(context);
+                }
+                return RUser;
             }
         }
         public void Save()

@@ -54,5 +54,10 @@ namespace BT.Controllers
             ViewData["id"] = id;
             return View(t);
         }
+        protected override void Dispose(bool disposing)
+        {
+            baseRep.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

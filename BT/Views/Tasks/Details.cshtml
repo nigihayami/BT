@@ -1,0 +1,58 @@
+﻿@model BT.Models.TTasks
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TTasks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTasksTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTasksTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTaskDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTaskDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTaskStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTaskStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTaskEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTaskEnd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

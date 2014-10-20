@@ -32,32 +32,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsApprove)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TProjectsVersionsClose)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.TProjectsVersionsCode, "Index", "Tasks", new { id = item.Id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TProjectsVersionsComment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TProjectsVersionsStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TProjectsVersionsEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TProjectsVersionsApprove)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TProjectsVersionsClose)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

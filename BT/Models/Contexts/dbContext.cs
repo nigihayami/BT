@@ -21,5 +21,7 @@ namespace BT.Models
         public DbSet<TProjects> TProjects { get; set; }
         public DbSet<TProjectsVersions> TProjectsVersions { get; set; }
         public DbSet<TStatus> TStatus { get; set; }
+
+        public DbSet<BT.Models.TTasks> TTasks { get; set; }
     }
 }

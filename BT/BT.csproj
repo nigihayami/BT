@@ -168,17 +168,21 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Code\Support.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProjectsVersionsController.cs" />
+    <Compile Include="Controllers\Projects\ProjectsVersionsController.cs" />
     <Compile Include="Controllers\Projects\ProjectsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="DAL\base\simpleRepository.cs" />
     <Compile Include="DAL\base\baseRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\TProjectsExecutors.cs" />
+    <Compile Include="Models\TTasks.cs" />
     <Compile Include="Models\Validations\DateValidation.cs" />
     <Compile Include="Models\Tables\TProjectsVersions.cs" />
     <Compile Include="Models\Tables\TStatus.cs" />
@@ -264,6 +268,9 @@
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\ProjectsVersions\Index.cshtml" />
     <Content Include="Views\ProjectsVersions\Create.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

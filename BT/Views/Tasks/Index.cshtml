@@ -1,0 +1,56 @@
+﻿<div class="row">
+    @{
+        ViewBag.Title = "Index";
+        var startDay = (DateTime)ViewData["StartDay"];
+        var endDay = (DateTime)ViewData["endDay"];
+        <table class="table table table-bordered">
+            <thead>
+                <tr>
+                    @while (startDay <= endDay)
+                    {
+                        <th>@startDay.Date.ToString("dd.MM.yyyy")</th>
+                        startDay = startDay.AddDays(1.00);
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var t = (List<BT.Models.TTasks>)ViewData["data"];
+                    foreach (var u in t.Select(a => a.TUser.Id).Distinct())
+                    {
+                        var s = (DateTime)ViewData["StartDay"];
+                        var e = (DateTime)ViewData["endDay"];
+                        int count_ = e.Date.Subtract(s.Date).Days + 1;
+                        <tr>
+                            <td class="info" colspan="@count_">
+                                @t.First(a => a.TUser.Id == u).TUser.UserName
+                            </td>
+                        </tr>
+                        foreach (var item in t.Where(a => a.TUser.Id == u))
+                        {
+                            var start = (DateTime)ViewData["StartDay"];
+                            var end = (DateTime)ViewData["endDay"];
+                            <tr>
+                                @foreach (var listitem in BT.Code.Support.GetColumnTimeline(start, end, item.TTaskStart, item.TTaskEnd))
+                                {
+                                    <td colspan="@listitem.colspawn" style="padding:0">
+                                        @if (listitem.IsTask)
+                                        {
+                                            <a href="@Url.Action("Details", "Tasks", new { id = item.Id})" class="list-group-item active">
+                                                #@item.Id
+                                            </a>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div class="row">
+    @Html.ActionLink("Create New", "Create", "Tasks", new { id = ViewData["id"] }, null)
+</div>
+
