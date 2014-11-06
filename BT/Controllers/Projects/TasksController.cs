@@ -18,6 +18,7 @@ namespace BT.Controllers
         public ActionResult Index(int id)
         {
             ViewData["id"] = id;
+            ViewData["TUsers"] = new List<ApplicationUser>(baseRep.Users.Get());
             var t = baseRep.Tasks.Get(a => a.TProjectsVersions.Id == id).ToList();
             ViewData["StartDay"] = baseRep.ProjectsVersions.GetByID(id).TProjectsVersionsStart;
             if (t.Count == 0)

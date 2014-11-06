@@ -33,10 +33,10 @@
                             <tr>
                                 @foreach (var listitem in BT.Code.Support.GetColumnTimeline(start, end, item.TTaskStart, item.TTaskEnd))
                                 {
-                                    <td colspan="@listitem.colspawn" style="padding:0">
+                                    <td colspan="@listitem.colspawn" style="padding:0" class="@listitem._class">
                                         @if (listitem.IsTask)
                                         {
-                                            <a href="@Url.Action("Details", "Tasks", new { id = item.Id})" class="list-group-item active">
+                                            <a href="@Url.Action("Details", "Tasks", new { id = item.Id})" class="list-group-item active fg-white" style="display:block;">
                                                 #@item.Id
                                             </a>
                                         }
@@ -50,7 +50,63 @@
         </table>
     }
 </div>
-<div class="row">
-    @Html.ActionLink("Create New", "Create", "Tasks", new { id = ViewData["id"] }, null)
-</div>
+@model BT.Models.TTasks
+@using BT.DAL;
+<h2>Create</h2>
+@using (Html.BeginForm("Create","Tasks",new{id = ViewData["id"]}))
+{
+    @Html.AntiForgeryToken()
 
+    <div class="form-horizontal">
+        <h4>TTasks</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTasksTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TTasksTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TTasksTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTaskDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TTaskDesc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TTaskDesc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTaskStart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TTaskStart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TTaskStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTaskEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TTaskEnd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TTaskEnd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTasksTUsersId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(a => a.TTasksTUsersId, new SelectList((List<BT.Models.ApplicationUser>)ViewData["TUsers"], "Id", "UserName"))
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
